@@ -1,33 +1,48 @@
+import java.util.Random;
+import java.util.Scanner;
 
-/**
- * Write a description of class Main here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Main
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Main
-     */
-    public Main()
-    {
-        // initialise instance variables
-        x = 0;
+    public static void main(String[] args) {
+        Random randomNumber = new Random();
+        int value = randomNumber.nextInt((10 - 1) + 1) + 1;
+        System.out.println(value);
+        
+        Scanner userGuess = new Scanner(System.in);
+        
+        System.out.println("Guess a number between 1 and 10: ");
+        int inputNumber = userGuess.nextInt();
+        System.out.println("User's First Guess is: " + inputNumber);
+        
+        int attempts = 1;
+        int newNumber = 0;
+        while (inputNumber != value) {
+            if (inputNumber > value){
+                System.out.println(inputNumber + " Is too high, guess a new number: ");
+                newNumber = userGuess.nextInt();
+                if (newNumber == inputNumber){
+                    System.out.println(newNumber + " Is a duplicate number, select a different number.");                   
+                }else {
+                    inputNumber = newNumber;
+                    System.out.println("User's New Guess is: " + inputNumber);
+                    attempts++;               
+                }
+            }else {               
+                System.out.println(inputNumber + " Is too low, guess a new number: ");
+                newNumber = userGuess.nextInt();
+                if (newNumber == inputNumber){
+                    System.out.println(newNumber + " Is a duplicate number, select a different number.");                   
+                }else{
+                    inputNumber = newNumber;
+                    System.out.println("User's New Guess is: " + inputNumber);
+                    attempts++;
+                }   
+            
+        }  
     }
+        System.out.println("Congrats! You win!");
+        System.out.println("It only took you " + attempts + " guesses!");
+    
+}
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
 }
